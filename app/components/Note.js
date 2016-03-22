@@ -39,7 +39,14 @@ export default class Note extends Component {
           onKeyDown={this.handleKeyDown}/>
       )
     }
-
-    return <div onClick={this.handleItemClick}>{this.props.id}: {this.props.task}</div>
+    return (
+      <div onClick={this.handleItemClick}>
+        <span>{this.props.id}: {this.props.task}</span>
+        {this.props.onDelete
+          ? <button onClick={this.props.onDelete}>Delete</button>
+          : null
+        }
+      </div>
+    )
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "webpack-kanban",
+  "name": "Kanban",
   "version": "1.0.0",
   "description": "A simple Kanban app written in React",
   "main": "index.js",

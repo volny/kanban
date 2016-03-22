@@ -24,11 +24,8 @@ export default class App extends Component {
       notes
     }
   }
-  // use AF to bind `this` to `App`
   addNote = () => {
     this.setState({
-      // `concat` joins two arrays into a new one,
-      // which is more functional (don't mutate the old array)
       notes: this.state.notes.concat([{
         id: generateID(),
         task: 'New task'
@@ -46,15 +43,23 @@ export default class App extends Component {
       }
       return note
     })
-    this.setState({
-      notes
-    })
+    this.setState({notes})
+  }
+  deleteNote = (id, e) => {
+    e.stopPropagation()
+    const notes = this.state.notes.filter(
+      note => note.id !== id
+    )
+    this.setState({notes})
   }
   render() {
     return (
       <div>
         <button onClick={this.addNote}>Add note</button>
-        <Notes notes={this.state.notes} onEdit={this.editNote}/>
+        <Notes
+          notes={this.state.notes}
+          onEdit={this.editNote}
+          onDelete={this.deleteNote}/>
       </div>
     )
   }
