@@ -35,11 +35,26 @@ export default class App extends Component {
       }])
     })
   }
+  editNote = (id, task) => {
+    if (!task.trim()) {
+      return
+    }
+
+    const notes = this.state.notes.map(note => {
+      if (note.id === id && task) {
+        note.task = task
+      }
+      return note
+    })
+    this.setState({
+      notes
+    })
+  }
   render() {
     return (
       <div>
         <button onClick={this.addNote}>Add note</button>
-        <Notes notes={this.state.notes}/>
+        <Notes notes={this.state.notes} onEdit={this.editNote}/>
       </div>
     )
   }
